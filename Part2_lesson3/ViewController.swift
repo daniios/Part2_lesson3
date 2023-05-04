@@ -7,40 +7,53 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     // MARK: - IB outlets
-    @IBOutlet var redSlider: UISlider!
-    @IBOutlet var greenSlider: UISlider!
-    @IBOutlet var blueSlider: UISlider!
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
     
-    @IBOutlet var colorView: UIView!
+    @IBOutlet weak var colorView: UIView!
     
-    @IBOutlet var redNumber: UILabel!
-    @IBOutlet var greenNumber: UILabel!
-    @IBOutlet var blueNumber: UILabel!
+    @IBOutlet weak var redNumber: UILabel!
+    @IBOutlet weak var greenNumber: UILabel!
+    @IBOutlet weak var blueNumber: UILabel!
     
     // MARK: - Life Cycles Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 15
-        colorChange()
+        setColor()
+        redNumber.text = string(from: redSlider)
+        greenNumber.text = string(from: greenSlider)
+        blueNumber.text = string(from: blueSlider)
     }
     
     // MARK: - IB actions
-    @IBAction func rgbSlider (_ sender:UISlider) {
-        colorChange()
+    @IBAction func rgbSlider(_ sender:UISlider) {
+        setColor()
+        
+        switch sender {
+        case redSlider:
+            redNumber.text = string(from: redSlider)
+        case greenSlider:
+            greenNumber.text = string(from: greenSlider)
+        default:
+            blueNumber.text = string(from: blueSlider)
+        }
     }
     
     // MARK: - Private methods
-    private func colorChange() {
+    private func setColor() {
         colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
                                             green: CGFloat(greenSlider.value),
                                             blue: CGFloat(blueSlider.value),
                                             alpha: 1.00)
-        redNumber.text = String(format: "%.2f", redSlider.value)
-        greenNumber.text = String(format: "%.2f", greenSlider.value)
-        blueNumber.text = String(format: "%.2f", blueSlider.value)
+    }
+    
+    private func string(from slider: UISlider) -> String {
+        String(format: "%.2f", slider.value)
     }
 
 }
