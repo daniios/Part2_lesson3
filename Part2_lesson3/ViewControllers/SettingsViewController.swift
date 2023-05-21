@@ -1,13 +1,14 @@
 //
-//  ViewController.swift
-//  Part2_lesson3
+//  SettingsViewController.swift
+//  ColorizedApp
 //
 //  Created by Даниил Чупин on 04.05.2023.
+//  Modified by Даниил Чупин on 22.05.2023.
 //
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
     // MARK: - IB outlets
     @IBOutlet weak var redSlider: UISlider!
@@ -20,14 +21,15 @@ final class ViewController: UIViewController {
     @IBOutlet weak var greenNumber: UILabel!
     @IBOutlet weak var blueNumber: UILabel!
     
+    var bgColor: UIColor!
+    unowned var delegate: ColorSelectionDelegate!
+    
     // MARK: - Life Cycles Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         colorView.layer.cornerRadius = 15
-        setColor()
-        redNumber.text = string(from: redSlider)
-        greenNumber.text = string(from: greenSlider)
-        blueNumber.text = string(from: blueSlider)
+        setupFromMain()
     }
     
     // MARK: - IB actions
@@ -46,10 +48,24 @@ final class ViewController: UIViewController {
     
     // MARK: - Private methods
     private func setColor() {
-        colorView.backgroundColor = UIColor(red: CGFloat(redSlider.value),
-                                            green: CGFloat(greenSlider.value),
-                                            blue: CGFloat(blueSlider.value),
-                                            alpha: 1.00)
+        let selectedColor = UIColor(red: CGFloat(redSlider.value),
+                                   green: CGFloat(greenSlider.value),
+                                   blue: CGFloat(blueSlider.value),
+                                   alpha: 1.00)
+        colorView.backgroundColor = selectedColor
+        delegate.didSelectColor(selectedColor)
+    }
+    
+    private func setupFromMain() {
+        colorView.backgroundColor = bgColor
+        
+        redSlider.value = Float(bgColor.cgColor.components?[0] ?? 0)
+        greenSlider.value = Float(bgColor.cgColor.components?[1] ?? 0)
+        blueSlider.value = Float(bgColor.cgColor.components?[2] ?? 0)
+        
+        redNumber.text = string(from: redSlider)
+        greenNumber.text = string(from: greenSlider)
+        blueNumber.text = string(from: blueSlider)
     }
     
     private func string(from slider: UISlider) -> String {

@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  Part2_lesson3
+//  ColorizedApp
 //
 //  Created by Даниил Чупин on 04.05.2023.
 //
