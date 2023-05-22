@@ -21,6 +21,11 @@ final class SettingsViewController: UIViewController {
     @IBOutlet weak var greenNumber: UILabel!
     @IBOutlet weak var blueNumber: UILabel!
     
+    @IBOutlet weak var redTextField: UITextField!
+    @IBOutlet weak var greenTextField: UITextField!
+    @IBOutlet weak var blueTextField: UITextField!
+    
+    var doneButton: UIBarButtonItem!
     var bgColor: UIColor!
     unowned var delegate: ColorSelectionDelegate!
     
@@ -30,6 +35,17 @@ final class SettingsViewController: UIViewController {
         
         colorView.layer.cornerRadius = 15
         setupFromMain()
+        redTextField.delegate = self
+        greenTextField.delegate = self
+        blueTextField.delegate = self
+        
+        setupToolbar()
+    }
+    
+    @objc func doneButtonTapped() {
+        redTextField.resignFirstResponder()
+        greenTextField.resignFirstResponder()
+        blueTextField.resignFirstResponder()
     }
     
     // MARK: - IB actions
@@ -39,10 +55,13 @@ final class SettingsViewController: UIViewController {
         switch sender {
         case redSlider:
             redNumber.text = string(from: redSlider)
+            redTextField.text = string(from: redSlider)
         case greenSlider:
             greenNumber.text = string(from: greenSlider)
+            greenTextField.text = string(from: greenSlider)
         default:
             blueNumber.text = string(from: blueSlider)
+            blueTextField.text = string(from: blueSlider)
         }
     }
     
@@ -66,11 +85,84 @@ final class SettingsViewController: UIViewController {
         redNumber.text = string(from: redSlider)
         greenNumber.text = string(from: greenSlider)
         blueNumber.text = string(from: blueSlider)
+        
+        redTextField.text = string(from: redSlider)
+        greenTextField.text = string(from: greenSlider)
+        blueTextField.text = string(from: blueSlider)
+    }
+    
+    private func setupToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // Создаем кнопку Done
+        doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                     target: self,
+                                     action: #selector(doneButtonTapped))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil,
+                                        action: nil)
+        toolbar.items = [flexSpace, doneButton]
+        
+        // Устанавливаем тулбар в качестве inputAccessoryView
+        redTextField.inputAccessoryView = toolbar
+        greenTextField.inputAccessoryView = toolbar
+        blueTextField.inputAccessoryView = toolbar
     }
     
     private func string(from slider: UISlider) -> String {
         String(format: "%.2f", slider.value)
     }
-
+    
+    private func checkAndAdjustValue(forTextField
+                                     textField: UITextField) -> Float? {
+        if let inputText = textField.text, let floatValue = Float(inputText) {
+            // Проверяем, находится ли значение между 0 и 1
+            if floatValue < 0 {
+                print("Введенное значение меньше 0")
+                let newValue = max(floatValue, 0)
+                print("Преобразованное значение: \(newValue)")
+                return newValue
+            } else if floatValue > 1 {
+                print("Введенное значение больше 1")
+                let newValue = min(floatValue, 1)
+                print("Преобразованное значение: \(newValue)")
+                return newValue
+            } else {
+                print("Введенное значение находится в диапазоне от 0 до 1")
+                return floatValue
+            }
+        } else {
+            print("Некорректный ввод")
+            return nil
+        }
+    }
 }
 
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Создаем цифровую клавиатуру c разделителем
+        let numericKeyboard = UIKeyboardType.decimalPad
+        textField.keyboardType = numericKeyboard
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == redTextField {
+            textField.resignFirstResponder()
+            let newValue = checkAndAdjustValue(forTextField: redTextField)
+            redSlider.value = newValue ?? redSlider.value
+            redNumber.text = string(from: redSlider)
+        } else if textField == greenTextField {
+            textField.resignFirstResponder()
+            let newValue = checkAndAdjustValue(forTextField: greenTextField)
+            greenSlider.value = newValue ?? greenSlider.value
+            greenNumber.text = string(from: greenSlider)
+        } else {
+            textField.resignFirstResponder()
+            let newValue = checkAndAdjustValue(forTextField: blueTextField)
+            blueSlider.value = newValue ?? blueSlider.value
+            blueNumber.text = string(from: greenSlider)
+        }
+        setColor()
+    }
+}

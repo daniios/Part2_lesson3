@@ -70,7 +70,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="BED-zP-ww3">
-                                                <rect key="frame" x="138" y="0.0" width="217" height="21.333333333333332"/>
+                                                <rect key="frame" x="138" y="0.0" width="165" height="21.333333333333332"/>
                                                 <color key="minimumTrackTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="0.69897959183673475" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" systemColor="systemRedColor"/>
@@ -78,6 +78,11 @@
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="Scv-5A-Mcr"/>
                                                 </connections>
                                             </slider>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kfZ-9N-R06">
+                                                <rect key="frame" x="321" y="0.0" width="32" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="aq1-2j-vX1" firstAttribute="baseline" secondItem="0Ib-FB-0F5" secondAttribute="firstBaseline" id="CWL-Yj-fGT"/>
@@ -105,7 +110,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="bq2-nK-RO6">
-                                                <rect key="frame" x="138" y="0.0" width="217" height="21.333333333333332"/>
+                                                <rect key="frame" x="138" y="0.0" width="165" height="21.333333333333332"/>
                                                 <color key="minimumTrackTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="0.79610437925170063" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" systemColor="systemGreenColor"/>
@@ -113,6 +118,11 @@
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fez-o6-C2z"/>
                                                 </connections>
                                             </slider>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="69Z-Ft-Hfy">
+                                                <rect key="frame" x="321" y="0.0" width="32" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="Gkt-BI-jaz" firstAttribute="baseline" secondItem="f2r-6J-umL" secondAttribute="firstBaseline" id="fq9-8Q-Psr"/>
@@ -140,7 +150,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dUW-4p-hW1">
-                                                <rect key="frame" x="138" y="0.0" width="217" height="21.333333333333332"/>
+                                                <rect key="frame" x="138" y="0.0" width="165" height="21.333333333333332"/>
                                                 <color key="minimumTrackTintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="0.49596088435374147" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="0.83854166666666663" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="thumbTintColor" systemColor="systemBlueColor"/>
@@ -148,6 +158,11 @@
                                                     <action selector="rgbSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="2Et-pO-5A7"/>
                                                 </connections>
                                             </slider>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KP9-n3-oTY">
+                                                <rect key="frame" x="321" y="0.0" width="32" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="PRG-d9-gu5" firstAttribute="baseline" secondItem="GSV-ns-q4Q" secondAttribute="firstBaseline" id="SpJ-1L-BxN"/>
@@ -169,11 +184,14 @@
                     <connections>
                         <outlet property="blueNumber" destination="GSV-ns-q4Q" id="ht2-gW-dvI"/>
                         <outlet property="blueSlider" destination="dUW-4p-hW1" id="k8W-kN-7mi"/>
+                        <outlet property="blueTextField" destination="KP9-n3-oTY" id="syh-ro-ean"/>
                         <outlet property="colorView" destination="aEM-E0-zng" id="KBJ-p5-YIT"/>
                         <outlet property="greenNumber" destination="f2r-6J-umL" id="rFT-WL-9oB"/>
                         <outlet property="greenSlider" destination="bq2-nK-RO6" id="U6d-TN-xCK"/>
+                        <outlet property="greenTextField" destination="69Z-Ft-Hfy" id="hjo-St-ZDc"/>
                         <outlet property="redNumber" destination="0Ib-FB-0F5" id="rjx-yd-HLv"/>
                         <outlet property="redSlider" destination="BED-zP-ww3" id="tKb-7i-NKg"/>
+                        <outlet property="redTextField" destination="kfZ-9N-R06" id="lxJ-Gv-viN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
